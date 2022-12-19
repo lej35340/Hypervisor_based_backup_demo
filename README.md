@@ -59,4 +59,6 @@ When you start this inmate, you should see a toggling PIN 23.
 ### 3: set up the monitoring of the Arduino Board
 The Raspberry Pi monitors the VCC of the Arduino Board. Therefore, VCC (3.3V) from ARDUINO UNO and Pin 5 from Raspberry Pi are connected with each other like shown in the picture. On the Raspberry Pi side, the monitoring is done with a [bash script](RPI/Bash/Hypervisor_based_Backup.sh)
 <br>
-Here, you need to enter the correct paths to your cell config and your binary.
+Adapt the paths to your cell config and your binary(line 17 and 18).
+Copy the script to your target (Raspberry Pi) and make it exeuctable (chmod +X).
+Afterwards, the script will monitor Pin 5 of the Raspberry Pi (to which the VCC of ARDUINO UNO is connected) and will initiate the backup strategy in case of a voltage drop.
