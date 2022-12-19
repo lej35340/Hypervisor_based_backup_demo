@@ -27,14 +27,14 @@ It is a simple programm which toggles the digital PIN 13 (and an LED) using a so
 ### 1: create a RPI 4 Image capable of running jailhouse:
 
 Unfortunately, the jailhouse setup for the Raspberry Pi 4 is not quite straight forward. (This is due to the fact of missing upstream support for the Raspberry Pi) <br>
-The easiest way to get Jailhouse running on your Raspberry Pi is to use the predefined minimalistic image from:
+The easiest way to get Jailhouse running on your Raspberry Pi is to use the predefined **minimalistic** (without network or GPIO..) image from:
 https://github.com/siemens/jailhouse-images
 
-Afterwards, you can install the image on your RPI (flash it to the sd-card), start it up and do your first tests with Jailhouse.
+Download it, build the image for the Raspberry Pi4 and install the it on your RPI (flash it to the sd-card) as described on in the [readme](https://github.com/siemens/jailhouse-images). Afterwards, you can start it up and do your first tests with Jailhouse.
 User: root, pw: root
 You will see some example commands after login.
 
-If you want to be able to toggle some pins on your Raspberry pi as well, you need to install libgpiod. You can find the .deb packages in RPI/Debian_Packages. Copy them to your Raspberry Pi and install them with: <br>
+If you want to be able to toggle some pins on your Raspberry pi as well, you need to install libgpiod. You can find the .deb packages in [RPI/Debian_Packages](RPI/Debian_Packages). Copy them to your Raspberry Pi and install them with: <br>
 > dpkg -i libgpiod2_1.6.2-1_arm64.deb <br>
 > dpkg -i gpiod_1.6.3-1+b2_arm64.deb
 
@@ -51,16 +51,16 @@ To build your own jailhouse inmate, please download the
 https://github.com/siemens/jailhouse
 project.
 
-Copy the [Inmate](RPI/Jailhouse_inmate/running_pwm.c) to <jailhouse_install_dir>/inmates/demos/arm/ <br>
-Copy the [cell_config](RPI/Jailhouse_inmate/rpi-inmate-demo.c) to <jailhouse_install_dir>/configs/arm64/ <br>
+Copy the [Inmate](RPI/Jailhouse_inmate/running_pwm.c) to your **<jailhouse_install_dir>/inmates/demos/arm/**.  This file contains your bare-metal application wich is loaded into a new partition on your RPI<br>
+Copy the [cell_config](RPI/Jailhouse_inmate/rpi-inmate-demo.c) to  your **<jailhouse_install_dir>/configs/arm64/**. This file describes how the new partition should look like and what resources (e.g. GPIOs) should be assigned to it. <br>
 
 Generate the cell config and the jailhouse inmate using the command:
 > make ARCH=arm64 CROSS_COMPILE=aarch-linux-gnu- KDIR=\<path-to-Jailhouse-image-from-1\>/build/tmp/work/jailhouse-demo-arm64/buildchroot-host/1.0-r0/rootfs/usr/src/linux-headers-5.10.31/ <br>
 
   (In case you use another board with upstream Linux, just exchange the path to the Kernel dirs here)
 
-After successfull build, you will find the files <jailhouse_install_dir>/configs/arm64/rpi-inmate-demo.cell and <jailhouse_install_dir>/inmates/demos/arm64/running_pwm.bin <br>
-  Copy them to your RPI. For example: copy the <br>rpi-inmate-demo.cell to /etc/jailhouse/rpi-pwm-demo.cell <br> and the running_pwm.bin to /usr/libexec/jailhouse/demos/running_pwm.bin <br>
+After successfull build, you will find the files **<jailhouse_install_dir>/configs/arm64/rpi-inmate-demo.cell** and **<jailhouse_install_dir>/inmates/demos/arm64/running_pwm.bin**. <br>
+  Copy them to your RPI. For example: copy the <br>**rpi-inmate-demo.cell** to **/etc/jailhouse/rpi-pwm-demo.cell** <br> and the **running_pwm.bin** to **/usr/libexec/jailhouse/demos/running_pwm.bin** <br>
   
 You can start the inmate on the raspberry pi by entering <br> 
   > jailhouse enable /etc/jailhouse/rpi4.cell <br> 
