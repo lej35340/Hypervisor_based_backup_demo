@@ -19,7 +19,7 @@ It is a very simple programm which simply toggles the digital pin 13 (and an LED
 
 
 ## RASPBERRY PI 4
-I: create a RPI 4 Image capable of running jailhouse:
+### 1: create a RPI 4 Image capable of running jailhouse:
 
 Unfortunately, the jailhouse setup for the raspberry pi 4 is not quite straight forward. (This is due to the fact of missing upstream support for the Raspberry Pi)
 The easiest way to get Jailhouse running on your Raspberry Pi is to use the predefined minimalistic image from:
@@ -40,7 +40,7 @@ On boards with upstream support, you can use your favourite Linux version and bu
 https://github.com/siemens/jailhouse
 
 
-II: create your own "inmate"
+### 2: create your own "inmate"
 
 To build your own jailhouse inmate, please download the 
 https://github.com/siemens/jailhouse
@@ -54,10 +54,7 @@ make ARCH=arm64 CROSS_COMPILE=aarch-linux-gnu- KDIR=<path-to-Jailhouse-image-fro
 
 When you start this inmate, you should see a toggling PIN 23.
 
-III: set up "enviroment"
+### 3: set up "enviroment"
 
 -bash script
--install libgpio
-
---end--
 
