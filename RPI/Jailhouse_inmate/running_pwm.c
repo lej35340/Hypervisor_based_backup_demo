@@ -12,19 +12,15 @@
 
 #include <inmate.h>
 
-//JOLE: add blinking LED like : https://www.valvers.com/open-software/raspberry-pi/bare-metal-programming-in-c-part-1/
-
 #define GPIO_BASE       0xFE200000UL
 
-    /* The RPi4 model has the ACT LED attached to GPIO 42
-       https://github.com/raspberrypi/linux/blob/rpi-4.19.y/arch/arm/boot/dts/bcm2838-rpi-4-b.dts */
-    #define LED_GPFSEL      GPIO_GPFSEL4
-    #define LED_GPFBIT      6
-    #define LED_GPSET       GPIO_GPSET0
-    #define LED_GPCLR       GPIO_GPCLR0
-    #define LED_GPIO_BIT    5
+#define LED_GPFSEL      GPIO_GPFSEL4
+#define LED_GPFBIT      6
+#define LED_GPSET       GPIO_GPSET0
+#define LED_GPCLR       GPIO_GPCLR0
+#define LED_GPIO_BIT    5
 
-	#define GPIO_GPFSEL0    0
+#define GPIO_GPFSEL0    0
 #define GPIO_GPFSEL1    1
 #define GPIO_GPFSEL2    2
 #define GPIO_GPFSEL3    3
@@ -80,18 +76,12 @@ void inmate_main(void)
     printk("starting: Backup RT-Task");
 	/* Assign the address of the GPIO peripheral (Using ARM Physical Address) */
     gpio = (unsigned int*)GPIO_BASE;
-    /* Write 1 to the GPIO16 init nibble in the Function Select 1 GPIO
-       peripheral register to enable GPIO16 as an output */
-    //gpio[LED_GPFSEL] |= (1 << LED_GPFBIT);
 
-	/*
-	 * The cell config can set up a mapping to access UARTx instead of UART0
-	 */
 	while(++i) {
         
         /* Set the LED GPIO pin low ( Turn OK LED on for original Pi, and off
            for plus models )*/
-		for(tim = 0; tim < 213; tim++)
+		for(tim = 0; tim < 213; tim++) //wait for 10 us
             gpio[LED_GPCLR] = (1 << LED_GPIO_BIT);
 
         
@@ -103,10 +93,5 @@ void inmate_main(void)
 
 
         
-
-		//for (j = 0; j < 100000000; j++);
-		//printk("JOLE Hello %d from cell! JOLE\n", i);
 	}
-
-	/* lr should be 0, so a return will go back to the reset vector */
 }
