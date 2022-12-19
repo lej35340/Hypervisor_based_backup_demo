@@ -11,7 +11,7 @@ The microcontroller based Arduino UNO provides a PWM-Signal, which should be bac
 
 ## General Setup:
 
-![alt text] (https://github.com/lej35340/Hypervisor_based_backup_demo/blob/main/Documentation/Experimental_Setup_Scheme.png)
+![Alt text](https://github.com/lej35340/Hypervisor_based_backup_demo/blob/main/Documentation/Experimental_Setup_Scheme.png)
 
 ## ARDUINO UNO
 Download Arduino studio and open the Project located at: <link>
