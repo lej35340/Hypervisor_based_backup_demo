@@ -1,3 +1,6 @@
+This work is sponsored by Vitesco Technologies (https://www.vitesco-technologies.com/en-us) 
+![Alt text](https://github.com/lej35340/Hypervisor_based_backup_demo/blob/main/Documentation/Vitesco_Logo.jpg)
+
 # A hypervisor based fault tolerant strategy for heterogeneous real-time systems
 
 This project targets on a fault recovery approach for heterogenous real-time critical systems in the automotive area using hypervisor techniques.
