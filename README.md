@@ -52,7 +52,7 @@ https://github.com/siemens/jailhouse
 project.
 
 Copy the [Inmate](RPI/Jailhouse_inmate/running_pwm.c) to your **<jailhouse_install_dir>/inmates/demos/arm/**.  This file contains your bare-metal application wich is loaded into a new partition on your RPI<br>
-Copy the [cell_config](RPI/Jailhouse_inmate/rpi-inmate-demo.c) to  your **<jailhouse_install_dir>/configs/arm64/**. This file describes how the new partition should look like and what resources (e.g. GPIOs) should be assigned to it. <br>
+Copy the [cell_config](RPI/Jailhouse_inmate/rpi4-inmate-demo.c) to  your **<jailhouse_install_dir>/configs/arm64/**. This file describes how the new partition should look like and what resources (e.g. GPIOs) should be assigned to it. <br>
 
 Generate the cell config and the jailhouse inmate using the command:
 > make ARCH=arm64 CROSS_COMPILE=aarch-linux-gnu- KDIR=\<path-to-Jailhouse-image-from-1\>/build/tmp/work/jailhouse-demo-arm64/buildchroot-host/1.0-r0/rootfs/usr/src/linux-headers-5.10.31/ <br>
