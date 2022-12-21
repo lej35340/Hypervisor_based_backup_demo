@@ -5,7 +5,7 @@ This work is sponsored by Vitesco Technologies (https://www.vitesco-technologies
 
 This project targets on a fault recovery approach for heterogenous real-time critical systems in the automotive area using hypervisor techniques.
 The demonstrator shows how bare-metal software running on a microcontroller board can be backed up by a microprocessor based board.
-For more information concerning the theorethical background, please read the documentation in the Docs directory.                                                    
+For more information concerning the theoretical background, please read the documentation in the Docs directory.                                                    
 
 ## Raspberry Pi and Arduino Demonstrator
 For easy reconstruction of the demonstrator setup, the two most popular "playground-boards" were used: the Raspberry Pi 4 and the Arduino UNO.
@@ -23,7 +23,7 @@ PIN 23 of the Raspberry Pi will provide the backup of the PWM Signal in case of 
 
 ## ARDUINO UNO
 Download Arduino studio and flash the Project located at: [Arduino/PWM_of_50khz](Arduino) to your Arduino Board<br>
-It is a simple programm which toggles the digital PIN 13 (and an LED) using a software PWM. You can connect this Pin with an oscilloscope as shown in the above picture.
+It is a simple program which toggles the digital PIN 13 (and an LED) using a software PWM. You can connect this Pin with an oscilloscope as shown in the above picture.
 
 
 ## RASPBERRY PI 4
@@ -44,7 +44,7 @@ If you want to be able to toggle some pins on your Raspberry pi as well, you nee
 Afterwards you can set/clear the pin 5 with: <br>
 gpioset pinctrl-bcm2711 5=0
 
-On boards with upstream support, you can use your favourite Linux version and build the jailhouse hypervisor by yourself. See:
+On boards with upstream support, you can use your favorite Linux version and build the jailhouse hypervisor by yourself. See:
 https://github.com/siemens/jailhouse
 
 
@@ -54,7 +54,7 @@ To build your own jailhouse inmate, please download the
 https://github.com/siemens/jailhouse
 project.
 
-Copy the [Inmate](RPI/Jailhouse_inmate/running_pwm.c) to your **<jailhouse_install_dir>/inmates/demos/arm/**.  This file contains your bare-metal application wich is loaded into a new partition on your RPI<br>
+Copy the [Inmate](RPI/Jailhouse_inmate/running_pwm.c) to your **<jailhouse_install_dir>/inmates/demos/arm/**.  This file contains your bare-metal application which is loaded into a new partition on your RPI<br>
 Copy the [cell_config](RPI/Jailhouse_inmate/rpi4-inmate-demo.c) to  your **<jailhouse_install_dir>/configs/arm64/**. This file describes how the new partition should look like and what resources (e.g. GPIOs) should be assigned to it. <br>
 
 Generate the cell config and the jailhouse inmate using the command:
@@ -62,7 +62,7 @@ Generate the cell config and the jailhouse inmate using the command:
 
   (In case you use another board with upstream Linux, just exchange the path to the Kernel dirs here)
 
-After successfull build, you will find the files **<jailhouse_install_dir>/configs/arm64/rpi-inmate-demo.cell** and **<jailhouse_install_dir>/inmates/demos/arm64/running_pwm.bin**. <br>
+After successful build, you will find the files **<jailhouse_install_dir>/configs/arm64/rpi-inmate-demo.cell** and **<jailhouse_install_dir>/inmates/demos/arm64/running_pwm.bin**. <br>
   Copy them to your RPI. For example: copy the <br>**rpi-inmate-demo.cell** to **/etc/jailhouse/rpi-pwm-demo.cell** <br> and the **running_pwm.bin** to **/usr/libexec/jailhouse/demos/running_pwm.bin** <br>
   
 You can start the inmate on the raspberry pi by entering <br> 
@@ -77,7 +77,7 @@ The inmate will toggle the PIN 23 afterwards.
 The Raspberry Pi monitors the VCC of the Arduino Board. Therefore, VCC (3.3V) from ARDUINO UNO and Pin 5 from Raspberry Pi are connected with each other like shown in the picture. On the Raspberry Pi side, the monitoring is done with a [bash script](RPI/Bash/Hypervisor_based_Backup.sh)
 <br>
 Adapt the paths in your script to your cell config and your binary(line 17 and 18).
-Copy the script to your target (Raspberry Pi) and make it exeuctable (chmod +X).
+Copy the script to your target (Raspberry Pi) and make it executable  (chmod +X).
 You can start the script afterwards with: <br>
 >./Hypervisor_based_Backup.sh<br>
 
